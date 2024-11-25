@@ -66,6 +66,7 @@ namespace CaRemplie
                         }
                         else
                             Console.WriteLine($"Fichier '{file}' vide");
+                        File.Move(@"Work\Todo\" + file, @"Work\Done\" + file);
                     }
                 }
                 else

@@ -13,7 +13,7 @@ namespace SerreVeure.Data
 
         protected DataConnectorBase()
         {
-            cnx = new SqlConnection("server=XXXXXXXXXX; Initial Catalog=SuperFlux; Integrated Security=true;");
+            cnx = new SqlConnection("server=DESKTOP-CLS\\SQLEXPRESS; Initial Catalog=SuperFlux; Integrated Security=true;");
 
             cnx.Open();
         }
