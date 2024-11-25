@@ -60,13 +60,18 @@ namespace CaRemplie
                                         commandes.Add(cmde);
                                     }
                                     else
-                                        Console.WriteLine($"Erreur dans la lecture de la quantité pour la refence '{cmde.Reference}'");
+                                        Console.WriteLine($"Erreur dans la lecture de la quantité pour la référence '{cmde.Reference}'");
                                 }
                             }
                         }
                         else
                             Console.WriteLine($"Fichier '{file}' vide");
-                        File.Move(@"Work\Todo\" + file, @"Work\Done\" + file);
+                        string todoPath = Path.GetFullPath("Work\\Todo");
+                        string donePath = Path.GetFullPath("Work\\Done");
+                        string fileName = Path.GetFileName(file);
+                        string destinationFile = Path.Combine(donePath, fileName);
+                        string sourceFile = Path.Combine(todoPath, fileName);
+                        File.Move(sourceFile, destinationFile, overwrite: true);
                     }
                 }
                 else
