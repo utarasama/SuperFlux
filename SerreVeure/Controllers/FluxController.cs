@@ -54,7 +54,7 @@ namespace SerreVeure.Controllers
                     using (ProduitData prdtData = new ProduitData())
                     {
                         prdtData.CreateProduct(command.ReferenceProduit, command.LibelleProduit);
-                        cmdeData.CreateCommand(command.ReferenceProduit, command.LibelleProduit, command.Quantite);
+                        cmdeData.CreateCommand(command.ReferenceProduit, command.LibelleProduit, command.Quantite, command.DateLivraison);
                     }
                 }
                 catch (Exception ex)

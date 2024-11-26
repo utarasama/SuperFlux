@@ -10,6 +10,7 @@ CREATE TABLE [dbo].[commande](
 	[reference] [varchar](20) NOT NULL,
 	[libelle] [varchar](2000) NOT NULL,
 	[quantite] [int] NOT NULL,
+	[dateLivraison] [varchar](30) NOT NULL,
  CONSTRAINT [PK_commande] PRIMARY KEY CLUSTERED 
 (
 	[reference] ASC

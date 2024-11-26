@@ -4,11 +4,14 @@ using System.Collections.Generic;
 
 using Stokomani.Frmwk.Web;
 using SerreVeure.Model;
+using System.Globalization;
 
 namespace CaRemplie
 {
     public static class Program
     {
+        private static readonly int NombreColAttendu = 4;
+
         static void Main(string[] args)
         {
             Console.WriteLine("Chargement des commandes...");
@@ -25,7 +28,12 @@ namespace CaRemplie
         {
             Console.WriteLine($"Création des commande {commande.Reference}...");
             using (HttpConnector cnx = new HttpConnector())
-                cnx.Post("http://localhost:59166/api/flux/RecieveCommand", new Commande() { ReferenceProduit = commande.Reference, LibelleProduit = commande.Libelle, Quantite = commande.Quantite }).Wait();
+                cnx.Post("http://localhost:59166/api/flux/RecieveCommand", new Commande() {
+                    ReferenceProduit = commande.Reference,
+                    LibelleProduit = commande.Libelle,
+                    Quantite = commande.Quantite,
+                    DateLivraison = commande.DateLivraison })
+                .Wait();
         }
 
         private static List<ReceiveCommand> LoadCommands()
@@ -48,7 +56,7 @@ namespace CaRemplie
                             {
                                 string[] elements = line.Split(new char[1] { ';' }, StringSplitOptions.RemoveEmptyEntries);
 
-                                if (elements.Length == 3)
+                                if (elements.Length == NombreColAttendu)
                                 {
                                     ReceiveCommand cmde = new ReceiveCommand();
                                     cmde.Reference = elements[0];
@@ -61,6 +69,8 @@ namespace CaRemplie
                                     }
                                     else
                                         Console.WriteLine($"Erreur dans la lecture de la quantité pour la référence '{cmde.Reference}'");
+
+                                    cmde.DateLivraison = elements[3];
                                 }
                             }
                         }
@@ -89,5 +99,6 @@ namespace CaRemplie
         public string Reference { get; set; }
         public string Libelle { get; set; }
         public int Quantite { get; set; }
+        public string DateLivraison { get; set; }
     }
 }

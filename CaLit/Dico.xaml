@@ -27,6 +27,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
 
@@ -35,6 +36,9 @@
 
                 <TextBlock FontSize="15" Margin="5,0,0,0" Grid.Row="1" FontWeight="Bold" Grid.Column="0" Text="Libellé : "/>
                 <TextBlock FontSize="15" Grid.Row="1" Grid.Column="1" Text="{Binding LibelleProduit}"/>
+                
+                <TextBlock FontSize="15" Margin="5,0,0,0" Grid.Row="2" FontWeight="Bold" Grid.Column="0" Text="Date de livraison estimée : "/>
+                <TextBlock FontSize="15" Grid.Row="2" Grid.Column="1" Text="{Binding DateLivraison}"/>
 
                 <Grid  Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2" Background="OrangeRed"/>
                 <TextBlock Margin="5" Foreground="White" FontSize="20" VerticalAlignment="Center" Grid.RowSpan="2" FontWeight="Bold" Grid.Column="2" Text="Quantité : "/>

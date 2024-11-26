@@ -19,9 +19,9 @@ namespace SerreVeure.Data
             return ConvertDataTableToList(ExecuteQuery($"SELECT * FROM commande WHERE reference = '{reference}';"), Convert);
         }
 
-        public void CreateCommand(string refPrdt, string libPrdt, int qte)
+        public void CreateCommand(string refPrdt, string libPrdt, int qte, string dateLivraison)
         {
-            ExecuteNonQuery($"INSERT INTO commande(reference,libelle,quantite) VALUES('{refPrdt}','{libPrdt}',{qte})");
+            ExecuteNonQuery($"INSERT INTO commande(reference,libelle,quantite,dateLivraison) VALUES('{refPrdt}','{libPrdt}',{qte},'{dateLivraison}')");
         }
 
         private Commande Convert(DataRow dr)
@@ -30,10 +30,13 @@ namespace SerreVeure.Data
 
             if (dr != null)
             {
-                cmd = new Commande();
-                cmd.ReferenceProduit = (string)dr["reference"];
-                cmd.LibelleProduit = (string)dr["libelle"];
-                cmd.Quantite = (int)dr["quantite"];
+                cmd = new Commande
+                {
+                    ReferenceProduit = (string)dr["reference"],
+                    LibelleProduit = (string)dr["libelle"],
+                    Quantite = (int)dr["quantite"],
+                    DateLivraison = (string)dr["dateLivraison"]
+                };
             }
 
             return cmd;
